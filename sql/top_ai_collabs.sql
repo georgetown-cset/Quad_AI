@@ -7,8 +7,21 @@ pairwise_collabs AS
   t1.country as country1, 
   t2.country as country2, 
   t1.year 
-FROM quad_ai.ai_papers AS t1 
-CROSS JOIN quad_ai.ai_papers as t2 
+FROM (
+  SELECT 
+      merged_id, 
+      country,
+      ai_papers.year
+  FROM quad_ai.ai_papers
+  INNER JOIN quad_ai.paper_countries 
+  USING(merged_id)) AS t1 
+CROSS JOIN 
+ (SELECT 
+      merged_id, 
+      country
+  FROM quad_ai.ai_papers
+  INNER JOIN quad_ai.paper_countries 
+  USING(merged_id)) as t2 
 WHERE t1.merged_id = t2.merged_id 
 AND t1.country != t2.country
 --AND t1.country < t2.country
