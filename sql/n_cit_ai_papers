@@ -1,0 +1,43 @@
+--Number of times cited by country for AI papers 
+
+with
+citation_countries as (
+select 
+  ref_id, 
+  country, 
+  refs.merged_id, 
+  year
+from quad_ai.paper_references refs
+join quad_ai.ai_papers corpus on refs.ref_id = corpus.merged_id
+join quad_ai.paper_countries countries on ref_id = countries.merged_id
+where 
+   and corpus.year between 2010 and 2020
+), 
+
+n_citations as (
+
+select 
+  count(distinct merged_id) as n_cit, 
+  ref_id, 
+  country, 
+  year
+from citation_countries
+group by 
+  ref_id, 
+  country, 
+  year
+order by n_cit desc
+)
+
+select 
+  country, 
+  sum(n_cit) as num_citations, 
+  year 
+from n_citations
+group by 
+  country, 
+  year
+order by 
+  year, 
+  num_citations desc
+
