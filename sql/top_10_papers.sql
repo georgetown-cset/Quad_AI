@@ -8,7 +8,7 @@ select
   refs.merged_id
 from quad_ai.paper_references refs
 join quad_ai.paper_countries countries on ref_id = countries.merged_id
-join quad_ai.ai_papers on corpus.merged_id = ref_id
+join quad_ai.ai_papers on ai_papers.merged_id = ref_id
 ), 
 
 
@@ -49,4 +49,4 @@ select
   corpus.title_english, 
   corpus.source_title
 from raw_ids 
-inner join gcp_cset_links_v2.corpus_merged corpus on ref_id = merged_id
+inner join quad_ai.ai_papers corpus on ref_id = merged_id
