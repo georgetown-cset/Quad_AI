@@ -177,8 +177,8 @@ WITH
         FALSE) AS ai_company,
       cset_ai_org,
       ai_category_cb,
-      IFNULL(investory_country,
-        'missing') AS investory_country,
+      IFNULL(investor_country,
+        'missing') AS investor_country,
       year
     FROM
       add_ai_to_inv ),
@@ -304,9 +304,9 @@ WITH
     year >= 2010),
   firms_people AS (
   SELECT
-    * EXCEPT(investory_country),
-    COALESCE(quad_ai.investory_country,
-      people_tab.investory_country) AS investor_country
+    * EXCEPT(investor_country),
+    COALESCE(quad_ai.investor_country,
+      people_tab.investor_country) AS investor_country
   FROM
     quad_ai
   LEFT JOIN (
@@ -319,11 +319,11 @@ WITH
   combine AS(
     # combine HKG with CHN
   SELECT
-    * EXCEPT(investory_country),
+    * EXCEPT(investor_country),
   IF
-    (investory_country = "HKG",
+    (investor_country = "HKG",
       "CHN",
-      investory_country) AS investor_country
+      investor_country) AS investor_country
   FROM
     quad_ai)
 SELECT
@@ -331,7 +331,7 @@ SELECT
   name,
   year,
   imputed_investment_value,
-  investory_country,
+  investor_country,
   country_code
 FROM
   quad_ai
@@ -340,7 +340,7 @@ GROUP BY
   name,
   year,
   imputed_investment_value,
-  investory_country,
+  investor_country,
   country_code
 ORDER BY
   NAME
