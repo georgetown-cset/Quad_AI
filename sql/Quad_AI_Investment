@@ -271,8 +271,7 @@ WITH
     AI_companies
   WHERE
     (cset_ai_org IS TRUE
-      OR ai_category_cb IS TRUE
-      OR ai_company IS TRUE)
+      OR ai_category_cb IS TRUE)
     AND (country_code = "USA"
       OR country_code = "AUS"
       OR country_code = "JPN"
