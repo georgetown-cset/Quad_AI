@@ -277,7 +277,8 @@ WITH
       OR country_code = "AUS"
       OR country_code = "JPN"
       OR country_code = "IND"
-      OR country_code = "CHN")
+      OR country_code = "CHN"
+      OR country_code = "HKG")
     AND (year >= 2010)
     AND ( investment_type != "missing"
       OR investment_type != "debt_financing"
