@@ -120,7 +120,7 @@ WITH
     LEFT JOIN (
       SELECT
         uuid AS investor_uuid,
-        country_code AS investory_country
+        country_code AS investor_country
       FROM
         gcp_cset_crunchbase.investors)
     USING
@@ -305,7 +305,7 @@ WITH
   SELECT
     * EXCEPT(investor_country),
     COALESCE(quad_ai.investor_country,
-      people_tab.investor_country) AS investor_country
+      people_tab.investory_country) AS investor_country
   FROM
     quad_ai
   LEFT JOIN (
