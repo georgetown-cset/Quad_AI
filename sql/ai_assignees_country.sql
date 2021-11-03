@@ -15,10 +15,11 @@ WITH patents as (
      max(extract(year from publication_date)) as year
     from  quad_ai.patent_dates
     group by family_id) as patents_with_min_date 
-  INNER JOIN quad_ai.patent_assignees using (family_ID)
+  INNER JOIN quad_ai.normalized_patent_assignees using (family_ID)
   --CROSS JOIN UNNEST(Assignee) as assignee_unique
   ) ai
-  INNER JOIN `gcp-cset-projects.unified_patents.merged_metadata` using(family_ID)
+  INNER JOIN quad_ai.merged_patent_metadata using(family_ID)
+  INNER JOIN quad_ai.unified_ai_patents using(family_ID)
   GROUP BY year, 
     assignee, 
     family_ID, 
@@ -38,7 +39,7 @@ WHERE
     (filing_status = 'Grant')
     and year >= 2010
     and year <= 2020
-    and Priority_country = 'JP' --or "US" or "CN" or "IN" or "AU"
+    and Priority_country = 'AU' --or "US" or "CN" or "IN" or "AU"
 GROUP BY Priority_country, assignee, filing_status
 ORDER BY Num_patents desc
 LIMIT 25)
@@ -54,7 +55,7 @@ WHERE
     (filing_status = 'Application')
     and year >= 2010 
     and year <= 2020
-    and Priority_country = 'JP'
+    and Priority_country = 'AU'
 GROUP BY 
     Priority_country, 
     assignee, 
