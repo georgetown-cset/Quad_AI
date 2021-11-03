@@ -3,6 +3,11 @@ CREATE OR REPLACE TABLE quad_ai.paper_affiliations as (
   FROM `gcp-cset-projects.gcp_cset_links_v2.paper_affiliations_merged`
 );
 
+CREATE OR REPLACE TABLE quad_ai.patent_assignees as (
+  SELECT *
+  FROM `gcp-cset-projects.unified_patents.patent_assignees`
+);
+
 CREATE OR REPLACE TABLE quad_ai.paper_countries as (
   SELECT *
   FROM `gcp-cset-projects.gcp_cset_links_v2.paper_countries_merged`
