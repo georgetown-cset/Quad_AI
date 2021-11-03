@@ -15,6 +15,7 @@ SELECT *
     GROUP BY family_id) as patents_with_min_date 
 ) ai
 JOIN quad_ai.merged_patent_metadata using(family_id)
+JOIN quad_ai.unified_ai_patents using(family_id)    
 GROUP BY 
     year, 
     publication_country, 
