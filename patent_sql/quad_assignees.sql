@@ -7,6 +7,7 @@ select
 from quad_ai.granted_ai_patents_1790
 where 
     priority_country in ("IN", "US", "JP", "AU")
+    and year between 2010 and 2020
 group by 
     priority_country, 
     assignee_unique
