@@ -8,6 +8,11 @@ CREATE OR REPLACE TABLE quad_ai.normalized_patent_assignees as (
   FROM `gcp-cset-projects.unified_patents.normalized_patent_assignees`
 );
 
+CREATE OR REPLACE TABLE quad_ai.ai_patents_1790 as (
+  SELECT *
+  FROM `gcp-cset-projects.1790_patents.1790_ai_patents_all_quantitative_information`
+);
+
 CREATE OR REPLACE TABLE quad_ai.paper_countries as (
   SELECT *
   FROM `gcp-cset-projects.gcp_cset_links_v2.paper_countries_merged`
