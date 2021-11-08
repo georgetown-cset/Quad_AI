@@ -7,6 +7,7 @@ INNER JOIN quad_ai.paper_countries countries using (merged_id)
 WHERE  
   corpus.year >= 2010 
   and corpus.year <= 2020
+  --also analyzed for list of EU countries and ASEAN
   and country in ("India", "United States", "Australia", "Japan")
 ORDER BY 
   num_papers desc
