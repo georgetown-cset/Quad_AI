@@ -6,7 +6,7 @@ SELECT merged_id,
 FROM quad_ai.ai_papers
 JOIN quad_ai.paper_countries using (merged_id)
 ),
-
+--change country combinations and name as requested. see combos of Japan, USA, Australia, India
 usa as (
 SELECT * 
 FROM ids
@@ -21,15 +21,11 @@ country = "India"),
 collab as (
 SELECT merged_id,  
   year,
-  case when field_stats.name 
-  in 
-    (select * 
-    from quad_ai.top_mag_ai)
-   then field_stats.name else 
-     ("Other AI") end as field_name 
+  field_stats.name as field_name
 FROM quad_ai.top_fields, unnest (fields) as field_stats 
 JOIN india using (merged_id)
 JOIN usa using (merged_id)
+WHERE level = 1
 )
 
 SELECT field_name, 
