@@ -2,7 +2,7 @@ WITH papers as (
 SELECT 
   distinct merged_id,
   aff.country  
-FROM quad_ai.papers corpus  
+FROM quad_ai.ai_papers corpus  
 INNER JOIN quad_ai.paper_countries aff  USING (merged_id)
 WHERE 
   corpus.year >= 2010 
