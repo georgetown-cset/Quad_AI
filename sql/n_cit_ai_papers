@@ -11,7 +11,7 @@ from quad_ai.paper_references refs
 join quad_ai.ai_papers corpus on refs.ref_id = corpus.merged_id
 join quad_ai.paper_countries countries on ref_id = countries.merged_id
 where 
-   and corpus.year between 2010 and 2020
+   corpus.year between 2010 and 2020
 ), 
 
 n_citations as (
