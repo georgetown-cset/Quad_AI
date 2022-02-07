@@ -278,7 +278,7 @@ WITH
       OR country_code = "IND"
       OR country_code = "CHN"
       OR country_code = "HKG")
-    AND (year >= 2010)
+    AND (year >= 2010) AND (year <= 2021))
     AND ( investment_type != "missing"
       OR investment_type != "debt_financing"
       OR investment_type != "equity_crowdfunding"
@@ -300,7 +300,7 @@ WITH
   ON
     people.featured_job_organization_uuid = organization.uuid
   WHERE
-    year >= 2010),
+    (year >= 2010) AND (year <= 2021)),
   firms_people AS (
   SELECT
     * EXCEPT(investor_country),
