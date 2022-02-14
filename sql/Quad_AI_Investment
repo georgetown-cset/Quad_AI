@@ -316,7 +316,6 @@ WITH
 SELECT
   DISTINCT investment_type,
   target_name,
-  investor_name,
   year,
   imputed_investment_value,
   investor_country,
