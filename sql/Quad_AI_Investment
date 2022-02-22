@@ -316,11 +316,20 @@ WITH
 SELECT
   DISTINCT investment_type,
   target_name,
+  string_agg (investor_name, "; ") as investor_names,
   year,
   imputed_investment_value,
   investor_country,
   target_country
 FROM
   combine
-ORDER BY
-  target_name
+  where investor_country is not null
+group by 
+investment_type,
+  target_name,
+  year,
+  imputed_investment_value,
+  investor_country,
+  target_country
+order by 
+target_name
