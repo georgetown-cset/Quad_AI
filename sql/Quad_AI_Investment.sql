@@ -5,7 +5,7 @@ WITH
   SELECT
     * EXCEPT(short_description,
       description),
-    CONCAT(short_description,' ', description) AS description
+    CONCAT(coalesce(short_description, ''),' ', coalesce(description, '')) AS description
   FROM (
     SELECT
       uuid,
@@ -54,11 +54,7 @@ WITH
   IF
     (category_groups_list LIKE '%Artificial Intelligence%',
       TRUE,
-      FALSE) AS ai_category_cb,
-  IF
-    (CSET_id IS NOT NULL,
-      TRUE,
-      FALSE) AS cset_ai_org
+      FALSE) AS ai_category_cb
   FROM
     comp
   LEFT JOIN (
@@ -172,7 +168,6 @@ WITH
       0) AS ipo,
     IFNULL(ai_company,
       FALSE) AS ai_company,
-    cset_ai_org,
     ai_category_cb,
     IFNULL(investor_country,
       'missing') AS investor_country,
@@ -264,8 +259,8 @@ WITH
   FROM
     imp_step6
   WHERE
-    (cset_ai_org IS TRUE
-      OR ai_category_cb IS TRUE)
+    (ai_company is TRUE 
+    or ai_category_cb IS TRUE)
     AND (target_country = "USA"
       OR target_country = "AUS"
       OR target_country = "JPN"
