@@ -1,4 +1,4 @@
---5.9.2022
+--8.1.2022
 create or replace table quad_ai.ai_patents as 
 
 select ai_patents.patent_id, 
