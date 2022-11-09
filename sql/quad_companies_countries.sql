@@ -9,7 +9,7 @@ where (cat_data.isAI(short_description) is true
     or cat_data.isAI(description) is true 
     or categories like '%Artificial Intelligence%')
     --only companies thru 2021
-    and founded_on < "2022-01-01
+    and founded_on < "2022-01-01"
     --only active companies
     and closed_on is null
 group by country_code 
