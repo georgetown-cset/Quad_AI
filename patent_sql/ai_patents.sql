@@ -1,4 +1,6 @@
 --11.15.2022
+
+--03.01.2023
 create or replace table quad_ai.ai_patents as 
 
 select ai_patents.patent_id, 
